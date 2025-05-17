@@ -13,18 +13,14 @@ gpasswd -a sshuser wheel
 echo "sshuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Настройка SSH
-sed -i 's/#Port 22/Port 2024/' /etc/ssh/sshd_config
-sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-echo "AllowUsers sshuser" >> /etc/ssh/sshd_config
-echo "MaxAuthTries 2" >> /etc/ssh/sshd_config
-echo "Banner /etc/openssh/banner" >> /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 2024/' /etc/openssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/openssh/sshd_config
+echo "AllowUsers sshuser" >> /etc/openssh/sshd_config
+echo "MaxAuthTries 2" >> /etc/openssh/sshd_config
+echo "Banner /etc/openssh/banner" >> /etc/openssh/sshd_config
 
 # Создание баннера
-mkdir -p /etc/openssh
 echo "Authorized access only" > /etc/openssh/banner
-
-# Права на баннер
-chmod 644 /etc/openssh/banner
 
 # Перезапуск SSH
 systemctl restart sshd

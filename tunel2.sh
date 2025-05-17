@@ -4,10 +4,10 @@
 CURRENT_IP=$(ip -4 addr show ens18 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 
 # Создаем директорию и файлы конфигурации
-mkdir -p /etc/network/tun0
+mkdir -p /etc/net/ifaces/tun0
 
 # Файл options (с динамическим IP)
-cat > /etc/network/tun0/options <<EOF
+cat > /etc/net/ifaces/tun0/options <<EOF
 TYPE=iptun
 TUNTYPE=gre
 TUNLOCAL=$CURRENT_IP
@@ -18,7 +18,7 @@ HOST=ens18
 EOF
 
 # Файл ipv4address
-echo "10.10.10.2/30" > /etc/network/tun0/ipv4address
+echo "10.10.10.2/30" > /etc/net/ifaces/tun0/ipv4address
 
 # Загружаем модуль GRE и перезапускаем сеть
 modprobe gre

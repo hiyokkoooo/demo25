@@ -1,46 +1,38 @@
 #!/bin/bash
 
-# Создание RAID 5 (md0) из устройств /dev/sdb, /dev/sdc, /dev/sdd
-mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 /dev/sd[b-d]
+# Создание RAID 5
+mdadm --create --verbose /dev/md0 -l 5 -n 3 /dev/sd[b-d]
 
-# Сохранение конфигурации RAID
-mdadm --detail --scan > /etc/mdadm.conf
+# Сохранение конфигурации
+mdadm --detail -scan > /etc/mdadm.conf
 
-# Создание раздела на RAID (автоматический ввод 'n' и 'w' для fdisk)
+# Работа с fdisk (автоматический ввод 'n' и 'w')
 echo -e "n\n\n\n\n\nw" | fdisk /dev/md0
 
-# Форматирование раздела в ext4
+# Форматирование раздела
 mkfs.ext4 /dev/md0p1
 
-# Создание точки монтирования
-mkdir -p /raid5
+# Создание директории и монтирование
+mkdir /raid5
 
-# Добавление в fstab для автоматического монтирования
+# Добавление в fstab через echo (без nano)
 echo "/dev/md0p1 /raid5 ext4 defaults 0 0" >> /etc/fstab
-
-# Монтирование
 mount -a
 
-# Установка и запуск NFS-сервера
-apt-get update
-apt-get install -y nfs-kernel-server
-systemctl enable --now nfs-server
+# Установка NFS
+apt-get install -y nfs-server
+systemctl enable --now nfs
 
-# Создание NFS-директории и настройка прав
-mkdir -p /raid5/nfs
+# Настройка NFS
+mkdir /raid5/nfs
 chown -R 99:99 /raid5/nfs
 chmod 777 /raid5/nfs
 
-# Настройка экспорта NFS
+# Добавление экспорта NFS через echo (без nano)
 echo "/raid5/nfs 10.1.1.64/28(rw,sync,no_subtree_check)" >> /etc/exports
 
-# Перезапуск NFS
-systemctl restart nfs-server
-
-# Создание тестового файла
+# Перезапуск NFS и создание тестового файла
+systemctl restart nfs
 touch /raid5/nfs/test
 
-# Вывод информации
-echo "RAID 5 (/dev/md0) создан и настроен."
-echo "NFS-сервер запущен. Тестовый файл: /raid5/nfs/test"
-echo "Проверьте доступность NFS: showmount -e"
+echo "Готово! RAID 5 и NFS настроены."

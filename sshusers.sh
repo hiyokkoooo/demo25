@@ -1,22 +1,36 @@
 #!/bin/bash
 
-# Добавляем пользователя sshuser с UID 1010 и домашней директорией
+# Создание пользователя sshuser с UID 1010
 useradd -u 1010 -m sshuser
 
-# Устанавливаем пароль P@sswOrd (без подтверждения)
-echo "sshuser:P@sswOrd" | chpasswd
+# Установка пароля P@ssw0rd без подтверждения
+echo "sshuser:P@ssw0rd" | chpasswd
 
-# Добавляем sshuser в группу wheel (если группа существует)
+# Добавление в группу wheel
 gpasswd -a sshuser wheel
 
-# Настраиваем sudo для sshuser (разрешаем все команды без пароля)
-if [ -f /etc/sudoers ]; then
-    echo "sshuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-    echo "Настройка sudo для sshuser выполнена."
-else
-    echo "Ошибка: файл /etc/sudoers не найден!"
-    exit 1
-fi
+# Настройка sudo без пароля
+echo "sshuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# Проверяем результат
-echo "Пользователь sshuser создан. Пароль: P@sswOrd. Права sudo настроены."
+# Настройка SSH
+sed -i 's/#Port 22/Port 2024/' /etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+echo "AllowUsers sshuser" >> /etc/ssh/sshd_config
+echo "MaxAuthTries 2" >> /etc/ssh/sshd_config
+echo "Banner /etc/openssh/banner" >> /etc/ssh/sshd_config
+
+# Создание баннера
+mkdir -p /etc/openssh
+echo "Authorized access only" > /etc/openssh/banner
+
+# Права на баннер
+chmod 644 /etc/openssh/banner
+
+# Перезапуск SSH
+systemctl restart sshd
+
+echo "Настройка завершена:"
+echo "- Пользователь: sshuser (пароль: P@ssw0rd)"
+echo "- SSH порт: 2024"
+echo "- Root-логин запрещен"
+echo "- Баннер создан"

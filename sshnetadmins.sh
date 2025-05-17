@@ -13,8 +13,8 @@ gpasswd -a net_admin wheel
 echo "net_admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # 5. Настройка SSH (порт 2024 и запрет root-логина)
-sed -i 's/#Port 22/Port 2024/' /etc/ssh/sshd_config
-sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 2024/' /etc/openssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/openssh/sshd_config
 
 # 6. Перезапуск SSH
 systemctl restart sshd

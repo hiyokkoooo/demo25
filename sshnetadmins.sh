@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 1. Создание пользователя net_admin
+# 1. Создание пользователя net_admin (ЛИБО ДРУГОГО ПОЛЬЗОВАТЕЛЯ, ПРИ СМЕНЕ ПОМЕНЯТЬ В ЭТОМ ФАЙЛЕ ИМЯ И Т.Д)
 useradd -m net_admin
 
 # 2. Установка пароля P@$$word (без подтверждения)
@@ -9,7 +9,7 @@ echo "net_admin:P@$$word" | chpasswd
 # 3. Добавление в группу wheel
 gpasswd -a net_admin wheel
 
-# 4. Настройка sudo без пароля (через echo вместо nano)
+# 4. Настройка sudo без пароля
 echo "net_admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # 5. Настройка SSH (порт 2024 и запрет root-логина)

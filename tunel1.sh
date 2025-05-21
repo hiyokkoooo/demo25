@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Получаем текущий IP интерфейса ens18
-CURRENT_IP=$(ip -4 addr show ens18 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
-
 # Создаем директорию и файлы конфигурации
 mkdir -p /etc/net/ifaces/tun0
 
-# Файл options (с динамическим IP)
+# Файл options
 cat > /etc/net/ifaces/tun0/options <<EOF
 TYPE=iptun
 TUNTYPE=gre
-TUNLOCAL=$CURRENT_IP
+TUNLOCAL=172.16.4.1
 TUNREMOTE=172.16.5.1
 TUNTTL=64
 TUNOPTIONS='ttl 64'
@@ -24,4 +21,4 @@ echo "10.10.10.1/30" > /etc/net/ifaces/tun0/ipv4address
 modprobe gre
 systemctl restart network
 
-echo "Туннель настроен. Локальный IP (ens18): $CURRENT_IP"
+echo "Туннель настроен"

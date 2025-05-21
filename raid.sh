@@ -15,7 +15,7 @@ mkfs.ext4 /dev/md0p1
 # Создание директории и монтирование
 mkdir /raid5
 
-# Добавление в fstab через echo (без nano)
+# Добавление в fstab
 echo "/dev/md0p1 /raid5 ext4 defaults 0 0" >> /etc/fstab
 mount -a
 
@@ -28,7 +28,7 @@ mkdir /raid5/nfs
 chown -R 99:99 /raid5/nfs
 chmod 777 /raid5/nfs
 
-# Добавление экспорта NFS через echo (без nano)
+# Добавление экспорта NFS МЕНЯЙТЕ НА СВОИ СЕТИ
 echo "/raid5/nfs 10.1.1.64/28(rw,sync,no_subtree_check)" >> /etc/exports
 
 # Перезапуск NFS и создание тестового файла

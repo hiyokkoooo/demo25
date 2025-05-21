@@ -10,7 +10,7 @@ sed -i 's/ospfd=no/ospfd=yes/' /etc/frr/daemons
 systemctl daemon-reload
 systemctl enable --now frr
 
-# Настройка OSPF через vtysh (автоматический ввод команд)
+# Настройка OSPF через vtysh (автоматический ввод команд) МЕНЯЙТЕ НА СВОИ АДРЕСА
 vtysh << 'EOF'
 conf
 router ospf

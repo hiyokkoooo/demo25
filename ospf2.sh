@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Установка FRR (исправлено: frn -> frr)
+# Установка FRR 
 apt-get update && apt-get install -y frr
 
 # Включение OSPF в /etc/frr/daemons (исправлено: оspfd=no -> ospfd=no)

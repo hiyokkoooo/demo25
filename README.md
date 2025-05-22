@@ -340,6 +340,13 @@ vtysh
 ### 4. SSH:
 **На HQ-SRV и BR-SRV:**
 ```
+apt-get update && apt-get install -y wget
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/sshusers.sh
+chmod +x sshusers.sh
+./sshusers.sh
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
+
 useradd -u 1010 -m sshuser
 passwd sshuser
 
@@ -363,9 +370,17 @@ nano /etc/openssh/banner
     Authorized access only
 
 systemctl restart sshd
+---------------------------------------------------------------------------
 ```
 **На HQ-RTR и BR-RTR:**
 ```
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/sshnetadmins.sh
+chmod +x sshnetadmins.sh
+./sshnetadmins.sh
+
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
+
 useradd -m net_admin
 passwd net_admin
 
@@ -382,6 +397,7 @@ nano /etc/openssh/sshd_config
     PermitRootLogin no
 
 systemctl restart sshd
+---------------------------------------------------------------------------
 ```
 **На HQ-CLI:**
 ```
@@ -395,12 +411,11 @@ systemctl enable --now sshd
 ### 5. DNS:
 **На HQ-SRV:**
 ```
-apt-get update && apt-get install wget
 nano /etc/hosts
 
     10.1.1.62	hq-rtr.au-team.irpo
 
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/dnsmasq.conf
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/dnsmasq.conf
 apt-get install -y dnsmasq
 systemctl enable --now dnsmasq
 rm -rf /etc/dnsmasq.conf
@@ -446,6 +461,13 @@ chattr +i /etc/resolv.conf
 ### 1. RAID и NFS:
  **На HQ-SRV:**
  ```
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/raid.sh
+chmod +x raid.sh
+./raid.sh
+
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
+
 mdadm --create --verbose /dev/md0 -l 5 -n 3 /dev/sd[b-d]
 mdadm --detail -scan > /etc/mdadm.conf
 fdisk /dev/md0
@@ -472,6 +494,7 @@ nano /etc/exports
 
 systemctl restart nfs
 touch /raid5/nfs/test
+---------------------------------------------------------------------------
 ```
 **На HQ-CLI:**
 ```
@@ -506,7 +529,7 @@ systemctl restart chronyd
 ```
 apt-get update && apt-get install -y ansible sshpass wget
 cd /etc/ansible
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/inventory.yml
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/inventory.yml
 nano inventory.yml
 
     Меняем адрес клиента на свой
@@ -525,7 +548,7 @@ ansible -m ping all
 apt-get install -y docker-engine docker-compose
 systemctl enable --now docker
 usermod user -aG docker
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/wiki.yml
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/wiki.yml
 mv wiki.yml /home/user
 cd /home/user
 docker compose -f wiki.yml up -d
@@ -674,7 +697,7 @@ systemctl restart httpd2
 ```
 apt-get install -y nginx wget
 cd /etc/nginx/conf-available.d/
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/revproxy.conf
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/revproxy.conf
 rm -rf /etc/nginx/sites-available.d/default.conf
 ln -s /etc/nginx/conf-available.d/revproxy.conf /etc/nginx/sites-enabled.d
 ls -la /etc/nginx/sites-enabled.d
@@ -823,9 +846,9 @@ systemctl restart sssd
 **Опять на BR-SRV, но на экзамене архив уже лежит там:**
 ```
 cd /opt
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/users.zip
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/users.zip
 unzip users.zip
-wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/import.sh
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/import.sh
 chmod +x import.sh
 bash import.sh
 ```

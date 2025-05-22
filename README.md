@@ -1,10 +1,15 @@
-/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/ГАЙД/
+/ГАЙД/
 Как пользоваться скриптами?
+
+
 Скрипт - исполняемый файл набором команд, которые компьютер выполняет автоматически, вместо того чтобы вы вводили их вручную по одной.
 В общем, позволяет сильно ускорить настройку 1 модуля, и немного 2-го
 
-\ВСЕ ФАЙЛЫ ЛОМОВА ДЛЯ УДОБСТВА Я ЗАЛИЛ НА СВОЙ ГИТХАБ: dnsmasq.conf; revproxy.conf; inventory.yml; wiki.yml; users.zip; import.sh
-Так что если видете wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/dnsmasq.conf (НАПРИМЕР) просто меняете на wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/dnsmasq.conf\
+
+ВСЕ ФАЙЛЫ ЛОМОВА ДЛЯ УДОБСТВА Я ЗАЛИЛ НА СВОЙ ГИТХАБ: dnsmasq.conf; revproxy.conf; inventory.yml; wiki.yml; users.zip; import.sh
+
+
+Так что если у Ломова написано: wget raw.githubusercontent.com/delmimalta/sdemo25/refs/heads/main/dnsmasq.conf (НАПРИМЕР) просто меняете на wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/dnsmasq.conf
 
 
 Как это можно использовать на ДЭМО?

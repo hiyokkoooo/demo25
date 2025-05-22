@@ -32,4 +32,7 @@ wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/sshusers.sh
       Файл должен скачаться, если присутствует доступ в интернет после базовой настройки. Бывает такое что до настройки днс, иногда не скачивается и выдает ошибку, чтоб пофиксить - в /etc/resolv.conf указать nameserver 8.8.8.8 (временно), после настройки dns нужно будет поставить как в мануале Ломова.
 chmod +x sshusers.sh
 ./sshusers.sh - Запуск скрипта
+
+
+
 ![image](https://github.com/user-attachments/assets/75eaba5a-dc23-488b-b339-18d47447f03b)

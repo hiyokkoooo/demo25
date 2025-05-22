@@ -189,7 +189,8 @@ apt-get update && apt-get install -y wget
 wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/vlandhcp.sh
 chmod +x vlandhcp.sh
 ./vlandhcp.sh
-**С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ**
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+--------------------------------------------------------------------------
 mkdir ens19.100/
 nano ens19.100/options
 
@@ -219,10 +220,17 @@ nano /etc/dnsmasq.conf
     interface=ens19.200
 
 systemctl restart dnsmasq
+---------------------------------------------------------------------------
 ```
 ### 3. GRE и OSPF:
 **На HQ-RTR:**
 ```
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/tunel1.sh
+chmod +x tunel1.sh
+./tunel1.sh
+
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
 mkdir tun0
 nano tun0/options
 
@@ -240,9 +248,18 @@ nano tun0/ipv4address
 
 modprobe gre
 systemctl restart network
+---------------------------------------------------------------------------
 ```
 **На BR-RTR:**
 ```
+apt-get update && apt-get install -y wget
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/tunel2.sh
+chmod +x tunel2.sh
+./tunel2.sh
+
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
+
 mkdir tun0
 nano tun0/options
 
@@ -260,9 +277,15 @@ nano tun0/ipv4address
 
 modprobe gre
 systemctl restart network
+---------------------------------------------------------------------------
 ```
 **Возвращаемся на HQ-RTR:**
 ```
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/ospf.sh
+chmod +x ospf.sh
+./ospf.sh
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
 apt-get install -y frr
 nano /etc/frr/daemons
 
@@ -283,9 +306,16 @@ vtysh
     ip ospf message-digest-key 1 md5 P@ssw0rd
     do wr
     exit
+---------------------------------------------------------------------------
 ```
 **Возвращаемся на BR-RTR:**
 ```
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/ospf2.sh
+chmod +x ospf2.sh
+./ospf2.sh
+
+С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ
+---------------------------------------------------------------------------
 apt-get update && apt-get install -y frr
 nano /etc/frr/daemons
 
@@ -305,6 +335,7 @@ vtysh
     ip ospf message-digest-key 1 md5 P@ssw0rd
     do wr
     exit
+---------------------------------------------------------------------------
 ```
 ### 4. SSH:
 **На HQ-SRV и BR-SRV:**

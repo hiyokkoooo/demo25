@@ -185,6 +185,11 @@ ip -c -br r
 ### 2. VLAN и DHCP:
 **HQ-RTR на сабах:**
 ```
+apt-get update && apt-get install -y wget
+wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/vlandhcp.sh
+chmod +x vlandhcp.sh
+./vlandhcp.sh
+**С ПОМОЩЬЮ СКРИПТА ПРОПИШЕТСЯ ВСЕ НИЖЕ ОПИСАННОЕ**
 mkdir ens19.100/
 nano ens19.100/options
 

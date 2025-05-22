@@ -45,8 +45,13 @@ wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/sshusers.sh (Н
 **Пример настройки ssh для hq-srv:**
 apt-get update && apt-get install -y wget
 wget raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/sshusers.sh
+
+
       Файл должен скачаться, если присутствует доступ в интернет после базовой настройки. Бывает такое что до настройки днс, иногда не скачивается и выдает ошибку, чтоб пофиксить - в /etc/resolv.conf указать nameserver 8.8.8.8 (временно), после настройки dns нужно будет поставить как в мануале Ломова.
 chmod +x sshusers.sh
+
+
+
 ./sshusers.sh - Запуск скрипта
 
 

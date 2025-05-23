@@ -4,7 +4,7 @@
 useradd -m net_admin
 
 # 2. Установка пароля P@$$word (без подтверждения)
-echo "net_admin:P@$$word" | chpasswd
+echo "net_admin:P@ssw0rd" | chpasswd
 
 # 3. Добавление в группу wheel
 gpasswd -a net_admin wheel

@@ -17,6 +17,7 @@ HOST=ens19
 VID=200
 BOOTPROTO=static
 EOF
+echo "10.1.1.1/26" > /etc/net/ifaces/ens19.100/ipv4address
 echo "10.1.1.78/28" > /etc/net/ifaces/ens19.200/ipv4address
 
 # Перезапуск сети

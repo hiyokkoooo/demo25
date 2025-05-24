@@ -1,5 +1,5 @@
 #!/bin/bash
-
+apt-get install sshpass
 # Пароли и параметры (можно изменить)
 HQ_RTR_IP="172.16.4.1"
 HQ_RTR_USER="net_admin"

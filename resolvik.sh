@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Установка sshpass
+apt-get update && apt-get install sshpass
+
 # Функция для выполнения команд на удаленном сервере через SSH
 remote_exec() {
   sshpass -p "$3" ssh -tt -o StrictHostKeyChecking=no -p 2024 "$2@$1" "$4"

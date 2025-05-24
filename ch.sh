@@ -33,7 +33,7 @@ echo "Настраиваем Ansible на BR-SRV..."
 remote_exec "10.2.2.1" "sshuser" "P@ssw0rd" "
 sudo apt-get update && sudo apt-get install -y ansible sshpass wget
 cd /etc/ansible
-sudo wget https://raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/inventory.yml -O inventory.yml
+sudo wget https://raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/inventory.yml
 sudo sed -i 's/адрес_клиента/10.1.1.1/' inventory.yml  # Замените на нужный IP
 echo -e '[defaults]\ninterpreter_python = /usr/bin/python3\ninventory = /etc/ansible/inventory.yml\nhost_key_checking = false' | sudo tee ansible.cfg
 ansible -m ping all
@@ -45,7 +45,8 @@ remote_exec "10.2.2.1" "sshuser" "P@ssw0rd" "
 sudo apt-get install -y docker-engine docker-compose
 sudo systemctl enable --now docker
 sudo usermod -aG docker user
-wget https://raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/wiki.yml -O /home/user/wiki.yml
+wget https://raw.githubusercontent.com/hiyokkoooo/demo25/refs/heads/main/wiki.yml
+sudo mv wiki.yml /home/user
 cd /home/user
 sudo docker compose -f wiki.yml up -d
 "

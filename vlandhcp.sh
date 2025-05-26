@@ -26,7 +26,7 @@ HOST=ens19
 VID=999
 BOOTPROTO=static
 EOF
-
+echo "10.1.1.86/29" > /etc/net/ifaces/ens19.999/ipv4address
 echo "10.1.1.62/26" > /etc/net/ifaces/ens19.100/ipv4address
 echo "10.1.1.78/28" > /etc/net/ifaces/ens19.200/ipv4address
 

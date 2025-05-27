@@ -83,7 +83,7 @@ chmod +x sshusers.sh
 
 
    # DEMO-2025:
-**АВТОР ИСХОДНОГО МАНУАЛА: https://github.com/delmimalta/sdemo25
+АВТОР ИСХОДНОГО МАНУАЛА: https://github.com/delmimalta/sdemo25
 ---
 # Схема сети:
 

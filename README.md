@@ -8,7 +8,7 @@
 В общем, позволяет сильно ускорить настройку 1 модуля, и немного 2-го
 
 
-**ВСЕ ФАЙЛЫ ЛОМОВА ( https://github.com/delmimalta/sdemo25) ДЛЯ УДОБСТВА Я ЗАЛИЛ НА СВОЙ ГИТХАБ (и мануал тоже): dnsmasq.conf; revproxy.conf; inventory.yml; wiki.yml; users.zip; import.sh**
+**ВСЕ ФАЙЛЫ С ИСХОДНОГО МАНУАЛА( https://github.com/delmimalta/sdemo25) ДЛЯ УДОБСТВА Я ЗАЛИЛ НА СВОЙ ГИТХАБ (и мануал тоже): dnsmasq.conf; revproxy.conf; inventory.yml; wiki.yml; users.zip; import.sh**
 
 
 
